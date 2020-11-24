@@ -5,11 +5,19 @@
 }
 
 .inline-result.max {
-  color: #18520b;
-  border: 1px solid #18520b;
+  color: #2e9c16;
+  border: 1px solid #2e9c16;
+}
+
+.inline-result.max i {
+  color: #a8c9a1;
 }
 
 .inline-result.min {
   color: #aa0200;
   border: 1px solid #aa0200;
+}
+
+.inline-result.min i {
+  color: #d4abaa;
 }
