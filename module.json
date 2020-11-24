@@ -8,9 +8,9 @@
   "scripts": ["scripts/highlightInlineRolls.js"],
   "styles": ["styles/traceAmounts.css"],
   "packs": [],
-  "url": "",
-  "manifest": "",
-  "download": "",
+  "url": "https://github.com/hboettcher/trace-amounts-of-dice",
+  "manifest": "https://raw.githubusercontent.com/hboettcher/trace-amounts-of-dice/master/module.json",
+  "download": "https://github.com/hboettcher/trace-amounts-of-dice/archive/master.zip",
   "minimumCoreVersion": "0.7.7",
   "compatibleCoreVersion": "0.7.7"
 }
