@@ -11,9 +11,9 @@ Hooks.on("renderChatMessage", (message, html) => {
             term.faces ===
             term.results.filter(result => result.active)[0].result
           ) {
-            rolls[i].classList.add(".max");
+            rolls[i].classList.add("max");
           } else if (term.results[0].result === 1) {
-            rolls[i].classList.add(".min");
+            rolls[i].classList.add("min");
           }
         }
       });
