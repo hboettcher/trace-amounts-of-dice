@@ -1,0 +1,15 @@
+/* Taken from  https://www.reddit.com/r/FoundryVTT/comments/gcxyi1/roll_a_dice_pool_and_show_each_dice/ga8kxh6/ */
+
+.dice-roll .dice-tooltip {
+  display: block !important;
+}
+
+.inline-result.max {
+  color: #18520b;
+  border: 1px solid #18520b;
+}
+
+.inline-result.min {
+  color: #aa0200;
+  border: 1px solid #aa0200;
+}
