@@ -5,12 +5,12 @@
 }
 
 .inline-result.max {
-  color: #2e9c16;
+  color: #18520b;
   border: 1px solid #2e9c16;
 }
 
 .inline-result.max i {
-  color: #a8c9a1;
+  color: #18520b;
 }
 
 .inline-result.min {
@@ -19,5 +19,5 @@
 }
 
 .inline-result.min i {
-  color: #d4abaa;
+  color: #aa0200;
 }
