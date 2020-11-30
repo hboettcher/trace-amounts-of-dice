@@ -7,12 +7,10 @@ Hooks.on("renderChatMessage", (message, html) => {
       );
       rollData.terms.forEach(term => {
         if (term.class === "Die") {
-          if (
-            term.faces ===
-            term.results.filter(result => result.active)[0].result
-          ) {
+          let result = term.results.filter(res => res.active)[0].result;
+          if (result === term.faces) {
             rolls[i].classList.add("max");
-          } else if (term.results[0].result === 1) {
+          } else if (result === 1) {
             rolls[i].classList.add("min");
           }
         }
