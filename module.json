@@ -2,7 +2,7 @@
   "name": "trace-amounts-of-dice",
   "title": "Trace Amounts of Dice",
   "description": "Random preferences for Pathfinder 1E.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Hoodles#0345",
   "systems": ["pf1"],
   "scripts": ["scripts/highlightInlineRolls.js"],

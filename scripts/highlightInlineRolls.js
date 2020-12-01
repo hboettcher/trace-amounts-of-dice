@@ -5,13 +5,15 @@ Hooks.on("renderChatMessage", (message, html) => {
       const rollData = JSON.parse(
         decodeURIComponent(rolls[i].getAttribute("data-roll"))
       );
-      rollData.terms.forEach(term => {
+      rollData.terms.forEach((term) => {
         if (term.class === "Die") {
-          let result = term.results.filter(res => res.active)[0].result;
-          if (result === term.faces) {
-            rolls[i].classList.add("max");
-          } else if (result === 1) {
-            rolls[i].classList.add("min");
+          let results = term.results.filter((res) => res.active);
+          if (results.length === 1) {
+            if (results[0].result === term.faces) {
+              rolls[i].classList.add("max");
+            } else if (results[0].result === 1) {
+              rolls[i].classList.add("min");
+            }
           }
         }
       });
