@@ -7,7 +7,7 @@ Hooks.on("renderCombatTracker", (app, html, data) => {
         (c) => c._id === combatantId
       );
       const initiative = combatant.initiative;
-      if (initiative === null && combatant.owner) {
+      if (initiative !== null && combatant.owner) {
         const initDiv = el.getElementsByClassName("token-initiative")[0];
         initDiv.innerHTML = `<input id="${combatantId}-init-input" type="number" value="${
           initiative ?? ""
