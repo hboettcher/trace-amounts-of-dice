@@ -1,4 +1,4 @@
-Hooks.on("init", () => {
+Hooks.once("init", () => {
   game.settings.register("trace-amounts-of-dice", "addInitiativeInput", {
     name: "Enable initiative editing",
     hint:

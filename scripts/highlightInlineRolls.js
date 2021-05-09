@@ -1,4 +1,4 @@
-Hooks.on("init", () => {
+Hooks.once("init", () => {
   game.settings.register("trace-amounts-of-dice", "highlightInlineRolls", {
     name: "Highlight Inline Rolls",
     hint: "Enable this to highlight crits and crit fails for inline rolls.",

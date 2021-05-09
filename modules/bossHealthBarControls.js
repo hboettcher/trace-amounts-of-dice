@@ -1,4 +1,6 @@
-Hooks.on("init", () => {
+import { Test } from "./bossHealthBar";
+
+Hooks.once("init", () => {
   game.settings.register("trace-amounts-of-dice", "bossHealthBar", {
     name: "Enable boss health bar",
     hint: "Adds controls to hide/show boss health bar.",
@@ -56,7 +58,7 @@ Hooks.on("renderCombatTracker", (app, html, data) => {
           currentHealth += Math.max(0, actor.data.data.attributes.hp.value);
         }
       }
-      console.log({ baseHealth, currentHealth });
+      console.log({ baseHealth, currentHealth, Test });
     }
   }
 });
