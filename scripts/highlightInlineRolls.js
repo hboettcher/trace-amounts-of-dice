@@ -1,5 +1,19 @@
+Hooks.on("init", () => {
+  game.settings.register("trace-amounts-of-dice", "highlightInlineRolls", {
+    name: "Highlight Inline Rolls",
+    hint: "Enable this to highlight crits and crit fails for inline rolls.",
+    scope: "world",
+    config: true,
+    default: true,
+    type: Boolean,
+  });
+});
+
 Hooks.on("renderChatMessage", (message, html) => {
-  if (html.length === 1) {
+  if (
+    game.settings.get("trace-amounts-of-dice", "highlightInlineRolls") &&
+    html.length === 1
+  ) {
     const rolls = html[0].getElementsByClassName("inline-result");
     for (let i = 0; i < rolls.length; i++) {
       const rollData = JSON.parse(
