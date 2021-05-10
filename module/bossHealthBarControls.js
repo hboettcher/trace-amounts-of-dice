@@ -51,8 +51,9 @@ Hooks.on("renderCombatTracker", (app, html, data) => {
           currentHealth += Math.max(0, actor.data.data.attributes.hp.value);
         }
       }
+      console.log({ baseHealth, currentHealth });
       bossHealthBar.setBaseHealth(baseHealth);
-      bossHealthBar.setCurrentHealth(baseHealth);
+      bossHealthBar.setCurrentHealth(currentHealth);
     }
   }
 });
