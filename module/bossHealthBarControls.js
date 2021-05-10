@@ -1,4 +1,4 @@
-import { Test } from "./bossHealthBar";
+import { Test } from "./bossHealthBar.js";
 
 export function registerBossHealthBarControls(controls) {
   if (game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {

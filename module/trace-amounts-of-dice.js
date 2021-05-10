@@ -1,5 +1,5 @@
-import { registerBossHealthBarControls } from "./bossHealthBarControls";
-import { registerHooks } from "./hooks";
+import { registerBossHealthBarControls } from "./bossHealthBarControls.js";
+import { registerHooks } from "./hooks.js";
 
 Hooks.once("init", () => {
   game.settings.register("trace-amounts-of-dice", "bossHealthBar", {

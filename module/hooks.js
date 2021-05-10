@@ -1,5 +1,5 @@
-import addInlineInitiativeInput from "./addInlineInitiativeInput";
-import highlightInlineRolls from "./highlightInlineRolls";
+import addInlineInitiativeInput from "./addInlineInitiativeInput.js";
+import highlightInlineRolls from "./highlightInlineRolls.js";
 
 export const registerHooks = function () {
   Hooks.on("renderCombatTracker", (...args) => {
