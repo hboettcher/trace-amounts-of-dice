@@ -1,6 +1,6 @@
 import { Test } from "./bossHealthBar";
 
-Hooks.on("getSceneControlButtons", (controls) => {
+export function registerBossHealthBarControls(controls) {
   if (game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
     controls.push({
       name: "bossHealth",
@@ -28,7 +28,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
       ],
     });
   }
-});
+}
 
 Hooks.on("renderCombatTracker", (app, html, data) => {
   if (game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {

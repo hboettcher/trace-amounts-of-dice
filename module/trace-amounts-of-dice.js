@@ -1,3 +1,6 @@
+import { registerBossHealthBarControls } from "./bossHealthBarControls";
+import { registerHooks } from "./hooks";
+
 Hooks.once("init", () => {
   game.settings.register("trace-amounts-of-dice", "bossHealthBar", {
     name: "Enable boss health bar",
@@ -7,4 +10,26 @@ Hooks.once("init", () => {
     default: true,
     type: Boolean,
   });
+  game.settings.register("trace-amounts-of-dice", "highlightInlineRolls", {
+    name: "Highlight Inline Rolls",
+    hint: "Enable this to highlight crits and crit fails for inline rolls.",
+    scope: "world",
+    config: true,
+    default: true,
+    type: Boolean,
+  });
+  game.settings.register("trace-amounts-of-dice", "addInitiativeInput", {
+    name: "Enable initiative editing",
+    hint:
+      "Allows token owners to edit their initiative value in the combat tracker.",
+    scope: "world",
+    config: true,
+    default: true,
+    type: Boolean,
+  });
+  registerHooks();
+});
+
+Hooks.on("getSceneControlButtons", (controls) => {
+  registerBossHealthBarControls(controls);
 });

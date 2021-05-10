@@ -1,15 +1,4 @@
-Hooks.once("init", () => {
-  game.settings.register("trace-amounts-of-dice", "highlightInlineRolls", {
-    name: "Highlight Inline Rolls",
-    hint: "Enable this to highlight crits and crit fails for inline rolls.",
-    scope: "world",
-    config: true,
-    default: true,
-    type: Boolean,
-  });
-});
-
-Hooks.on("renderChatMessage", (message, html) => {
+export default function highlightInlineRolls(message, html) {
   if (
     game.settings.get("trace-amounts-of-dice", "highlightInlineRolls") &&
     html.length === 1
@@ -33,4 +22,4 @@ Hooks.on("renderChatMessage", (message, html) => {
       });
     }
   }
-});
+}

@@ -2,18 +2,10 @@
   "name": "trace-amounts-of-dice",
   "title": "Trace Amounts of Dice",
   "description": "Random preferences for Pathfinder 1E/2E.",
-  "version": "1.3.0-next.4",
+  "version": "1.3.0-next.5",
   "author": "Hoodles#0345",
   "systems": ["pf1", "pf2e"],
-  "scripts": [
-    "scripts/highlightInlineRolls.js",
-    "scripts/addInlineInitiativeInput.js"
-  ],
-  "esmodules": [
-    "module/bossHealthBarControls.js",
-    "module/bossHealthBar.js",
-    "module/trace-amounts-of-dice.js"
-  ],
+  "esmodules": ["module/trace-amounts-of-dice.js"],
   "styles": ["styles/traceAmounts.css"],
   "packs": [],
   "url": "https://github.com/hboettcher/trace-amounts-of-dice",

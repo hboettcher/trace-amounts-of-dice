@@ -1,16 +1,4 @@
-Hooks.once("init", () => {
-  game.settings.register("trace-amounts-of-dice", "addInitiativeInput", {
-    name: "Enable initiative editing",
-    hint:
-      "Allows token owners to edit their initiative value in the combat tracker.",
-    scope: "world",
-    config: true,
-    default: true,
-    type: Boolean,
-  });
-});
-
-Hooks.on("renderCombatTracker", (app, html, data) => {
+export default function addInlineInitiativeInput(app, html, data) {
   if (game.settings.get("trace-amounts-of-dice", "addInitiativeInput")) {
     const currentCombat = data.combats[data.currentIndex - 1];
     if (currentCombat) {
@@ -36,4 +24,4 @@ Hooks.on("renderCombatTracker", (app, html, data) => {
       });
     }
   }
-});
+}
