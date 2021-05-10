@@ -54,6 +54,7 @@ Hooks.on("renderCombatTracker", (app, html, data) => {
       console.log({ baseHealth, currentHealth });
       bossHealthBar.setBaseHealth(baseHealth);
       bossHealthBar.setCurrentHealth(currentHealth);
+      bossHealthBar.render();
     }
   }
 });
