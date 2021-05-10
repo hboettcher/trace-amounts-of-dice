@@ -14,7 +14,7 @@ export function registerBossHealthBarControls(controls) {
           title: "Show Boss Health Bar",
           icon: "fas fa-eye",
           onClick: () => {
-            new bossHealthBar.render(true);
+            bossHealthBar.render(true);
           },
           visible: game.user.isGM,
           button: true,

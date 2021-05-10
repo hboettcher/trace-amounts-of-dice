@@ -9,7 +9,7 @@ class BossHealthBar extends Application {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: "bossHealthBar",
-      template: "templates/hud/hotbar.html",
+      template: "templates/boss-health-bar.html",
       popOut: false,
     });
   }
