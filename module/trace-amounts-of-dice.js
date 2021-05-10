@@ -41,7 +41,6 @@ Hooks.once("init", () => {
     type: Boolean,
   });
 
-  registerHooks();
   registerLayer();
 
   game.socket.on("module.trace-amounts-of-dice", ({ active }) => {
