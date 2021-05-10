@@ -2,6 +2,7 @@ import addInlineInitiativeInput from "./addInlineInitiativeInput.js";
 import { registerBossHealthBarControls } from "./bossHealthBarControls.js";
 import { BossHealthLayer } from "./bossHealthLayer.js";
 import highlightInlineRolls from "./highlightInlineRolls.js";
+import bossHealthBar from "./bossHealthBar";
 
 function registerLayer() {
   const layers = mergeObject(Canvas.layers, {
