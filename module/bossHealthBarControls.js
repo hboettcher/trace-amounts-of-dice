@@ -6,7 +6,7 @@ export function registerBossHealthBarControls(controls) {
       name: "bossHealth",
       title: "Boss Health Bar Controls",
       icon: "fas fa-skull-crossbones",
-      layer: "FXMasterLayer",
+      layer: "BossHealthLayer",
       visible: game.user.isGM,
       tools: [
         {

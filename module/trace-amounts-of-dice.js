@@ -1,5 +1,17 @@
 import { registerBossHealthBarControls } from "./bossHealthBarControls.js";
+import { BossHealthLayer } from "./bossHealthLayer.js";
 import { registerHooks } from "./hooks.js";
+
+function registerLayer() {
+  const layers = mergeObject(Canvas.layers, {
+    bossHealthLayer: BossHealthLayer,
+  });
+  Object.defineProperty(Canvas, "layers", {
+    get: function () {
+      return layers;
+    },
+  });
+}
 
 Hooks.once("init", () => {
   game.settings.register("trace-amounts-of-dice", "bossHealthBar", {
@@ -28,6 +40,7 @@ Hooks.once("init", () => {
     type: Boolean,
   });
   registerHooks();
+  registerLayer();
 });
 
 Hooks.on("getSceneControlButtons", (controls) => {
