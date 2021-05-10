@@ -20,9 +20,12 @@
   width: 100%;
   height: 32px;
   color: #ddd;
+  position: relative;
 }
 
 .boss-health-bar-inner {
   height: 100%;
   background: rgb(87, 4, 4, 0.5);
+  position: relative;
+  transition: width 2s linear;
 }

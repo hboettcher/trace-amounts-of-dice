@@ -14,24 +14,22 @@ class BossHealthBar extends Application {
     });
   }
 
+  _getPercentage() {
+    if (!this._baseHealthTotal) {
+      return "0%";
+    }
+    return `${100 * (this._currentHealthTotal / this._baseHealthTotal)}%`;
+  }
+
   /** @override */
   getData(options) {
-    if (!this._baseHealthTotal) {
-      return { healthBarPercentage: "0%" };
-    }
-    return {
-      healthBarPercentage: `${
-        100 * (this._currentHealthTotal / this._baseHealthTotal)
-      }%`,
-    };
+    return { healthBarPercentage: this._getPercentage() };
   }
 
-  setCurrentHealth(currentHealthTotal) {
+  setHealth(currentHealthTotal, baseHealthTotal) {
     this._currentHealthTotal = Math.max(0, currentHealthTotal);
-  }
-
-  setBaseHealth(baseHealthTotal) {
     this._baseHealthTotal = Math.max(0, baseHealthTotal);
+    $(".boss-health-bar-inner").css("width", this._getPercentage());
   }
 }
 
