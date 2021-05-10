@@ -3,13 +3,6 @@ class BossHealthBar extends Application {
     super(options);
     this._baseHealthTotal = 0;
     this._currentHealthTotal = 0;
-    game.socket.on("module.trace-amounts-of-dice", ({ active }) => {
-      if (active) {
-        this.render(true);
-      } else {
-        this.close();
-      }
-    });
   }
 
   /** @override */

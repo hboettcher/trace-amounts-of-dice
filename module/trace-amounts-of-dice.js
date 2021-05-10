@@ -40,8 +40,17 @@ Hooks.once("init", () => {
     default: true,
     type: Boolean,
   });
+
   registerHooks();
   registerLayer();
+
+  game.socket.on("module.trace-amounts-of-dice", ({ active }) => {
+    if (active) {
+      bossHealthBar.render(true);
+    } else {
+      bossHealthBar.close();
+    }
+  });
 });
 
 Hooks.on("renderCombatTracker", (...args) => {
