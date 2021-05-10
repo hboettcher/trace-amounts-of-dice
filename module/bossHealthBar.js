@@ -9,7 +9,7 @@ class BossHealthBar extends Application {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: "bossHealthBar",
-      template: "templates/boss-health-bar.html",
+      template: "modules/trace-amounts-of-dice/templates/boss-health-bar.html",
       popOut: false,
     });
   }
