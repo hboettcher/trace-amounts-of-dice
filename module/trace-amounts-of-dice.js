@@ -1,6 +1,7 @@
+import addInlineInitiativeInput from "./addInlineInitiativeInput.js";
 import { registerBossHealthBarControls } from "./bossHealthBarControls.js";
 import { BossHealthLayer } from "./bossHealthLayer.js";
-import { registerHooks } from "./hooks.js";
+import highlightInlineRolls from "./highlightInlineRolls.js";
 
 function registerLayer() {
   const layers = mergeObject(Canvas.layers, {
@@ -43,6 +44,12 @@ Hooks.once("init", () => {
   registerLayer();
 });
 
+Hooks.on("renderCombatTracker", (...args) => {
+  addInlineInitiativeInput(...args);
+});
+Hooks.on("renderChatMessage", (...args) => {
+  highlightInlineRolls(...args);
+});
 Hooks.on("getSceneControlButtons", (controls) => {
   registerBossHealthBarControls(controls);
 });

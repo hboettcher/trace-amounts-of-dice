@@ -15,6 +15,7 @@ export function registerBossHealthBarControls(controls) {
           icon: "fas fa-eye",
           onClick: () => {
             bossHealthBar.render(true);
+            game.socket.emit("module.trace-amounts-of-dice", { active: true });
           },
           visible: game.user.isGM,
           button: true,
@@ -25,6 +26,7 @@ export function registerBossHealthBarControls(controls) {
           icon: "fas fa-trash",
           onClick: () => {
             bossHealthBar.close();
+            game.socket.emit("module.trace-amounts-of-dice", { active: false });
           },
           visible: game.user.isGM,
           button: true,
