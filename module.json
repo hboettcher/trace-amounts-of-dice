@@ -16,7 +16,7 @@
   "styles": ["styles/traceAmounts.css"],
   "packs": [],
   "url": "https://github.com/hboettcher/trace-amounts-of-dice",
-  "manifest": "https://raw.githubusercontent.com/hboettcher/trace-amounts-of-dice/develop/dev-module.json",
+  "manifest": "https://raw.githubusercontent.com/hboettcher/trace-amounts-of-dice/develop/module.json",
   "download": "https://github.com/hboettcher/trace-amounts-of-dice/archive/develop.zip",
   "minimumCoreVersion": "0.7.7",
   "compatibleCoreVersion": "0.7.9"
