@@ -23,7 +23,9 @@ export function registerBossHealthBarControls(controls) {
           name: "hideBossHealth",
           title: "Hide Boss Health Bar",
           icon: "fas fa-trash",
-          onClick: () => {},
+          onClick: () => {
+            bossHealthBar.close();
+          },
           visible: game.user.isGM,
           button: true,
         },
@@ -49,7 +51,8 @@ Hooks.on("renderCombatTracker", (app, html, data) => {
           currentHealth += Math.max(0, actor.data.data.attributes.hp.value);
         }
       }
-      new bossHealthBar.setBaseHealth(baseHealth);
+      bossHealthBar.setBaseHealth(baseHealth);
+      bossHealthBar.setCurrentHealth(baseHealth);
     }
   }
 });

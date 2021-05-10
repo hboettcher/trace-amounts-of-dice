@@ -17,8 +17,9 @@ class BossHealthBar extends Application {
   /** @override */
   getData(options) {
     return {
-      baseHealthTotal: this._baseHealthTotal,
-      currentHealthTotal: this._currentHealthTotal,
+      healthBarPercentage: `${
+        100 * (this._currentHealthTotal / this._baseHealthTotal)
+      }%`,
     };
   }
 
