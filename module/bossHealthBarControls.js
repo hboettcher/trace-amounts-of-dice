@@ -1,4 +1,4 @@
-import { Test } from "./bossHealthBar.js";
+import bossHealthBar from "./bossHealthBar.js";
 
 export function registerBossHealthBarControls(controls) {
   if (game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
@@ -13,7 +13,9 @@ export function registerBossHealthBarControls(controls) {
           name: "showBossHealth",
           title: "Show Boss Health Bar",
           icon: "fas fa-eye",
-          onClick: () => {},
+          onClick: () => {
+            new bossHealthBar.render(true);
+          },
           visible: game.user.isGM,
           button: true,
         },
@@ -47,7 +49,7 @@ Hooks.on("renderCombatTracker", (app, html, data) => {
           currentHealth += Math.max(0, actor.data.data.attributes.hp.value);
         }
       }
-      console.log({ baseHealth, currentHealth, Test });
+      new bossHealthBar.setBaseHealth(baseHealth);
     }
   }
 });
