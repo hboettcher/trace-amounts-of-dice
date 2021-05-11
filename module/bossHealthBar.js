@@ -20,7 +20,7 @@ class BossHealthBar extends Application {
 
   /** @override */
   close() {
-    this.bossHealthFilter.activate = false;
+    this.bossHealthFilter.active = false;
     this.dump();
     super.close();
   }
@@ -51,8 +51,8 @@ class BossHealthBar extends Application {
     }
 
     if (this.bossHealthFilter.active || forceActivate) {
-      if (!this.bossHealthFilter.activate && forceActivate) {
-        this.bossHealthFilter.activate = true;
+      if (!this.bossHealthFilter.active && forceActivate) {
+        this.bossHealthFilter.active = true;
         this.dump();
       }
       this.render(true);
@@ -68,7 +68,11 @@ class BossHealthBar extends Application {
       this.bossHealthFilter = {};
     }
 
-    $(".boss-health-bar-inner").css("width", this._getPercentage());
+    if (this.bossHealthFilter.active) {
+      $(".boss-health-bar-inner").css("width", this._getPercentage());
+    } else if (super.rendered) {
+      super.close();
+    }
   }
 
   dump() {
