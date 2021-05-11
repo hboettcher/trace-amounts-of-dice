@@ -14,8 +14,7 @@ export function registerBossHealthBarControls(controls) {
           title: "Show Boss Health Bar",
           icon: "fas fa-eye",
           onClick: () => {
-            bossHealthBar.render(true);
-            game.socket.emit("module.trace-amounts-of-dice", { active: true });
+            bossHealthBar.activate(true);
           },
           visible: game.user.isGM,
           button: true,
@@ -26,7 +25,6 @@ export function registerBossHealthBarControls(controls) {
           icon: "fas fa-trash",
           onClick: () => {
             bossHealthBar.close();
-            game.socket.emit("module.trace-amounts-of-dice", { active: false });
           },
           visible: game.user.isGM,
           button: true,
@@ -37,7 +35,10 @@ export function registerBossHealthBarControls(controls) {
 }
 
 Hooks.on("renderCombatTracker", (app, html, data) => {
-  if (game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
+  if (
+    game.user.isGM &&
+    game.settings.get("trace-amounts-of-dice", "bossHealthBar")
+  ) {
     const currentCombat = data.combats[data.currentIndex - 1];
     if (
       currentCombat &&

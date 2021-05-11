@@ -1,8 +1,7 @@
 class BossHealthBar extends Application {
   constructor(options) {
     super(options);
-    this._baseHealthTotal = 0;
-    this._currentHealthTotal = 0;
+    this.bossHealthFilter = {};
   }
 
   /** @override */
@@ -14,22 +13,81 @@ class BossHealthBar extends Application {
     });
   }
 
-  _getPercentage() {
-    if (!this._baseHealthTotal) {
-      return "0%";
-    }
-    return `${100 * (this._currentHealthTotal / this._baseHealthTotal)}%`;
-  }
-
   /** @override */
   getData(options) {
     return { healthBarPercentage: this._getPercentage() };
   }
 
-  setHealth(currentHealthTotal, baseHealthTotal) {
-    this._currentHealthTotal = Math.max(0, currentHealthTotal);
-    this._baseHealthTotal = Math.max(0, baseHealthTotal);
+  /** @override */
+  close() {
+    this.bossHealthFilter.activate = false;
+    this.dump();
+    super.close();
+  }
+
+  _getPercentage() {
+    if (
+      !(
+        this.bossHealthFilter.baseHealthTotal &&
+        this.bossHealthFilter.currentHealthTotal
+      )
+    ) {
+      return "0%";
+    }
+    return `${
+      100 *
+      (this.bossHealthFilter.currentHealthTotal /
+        this.bossHealthFilter.baseHealthTotal)
+    }%`;
+  }
+
+  activate(forceActivate) {
+    this.bossHealthFilter = canvas.scene.getFlag(
+      "trace-amounts-of-dice",
+      "bossHealthFilter"
+    );
+    if (!this.bossHealthFilter) {
+      this.bossHealthFilter = {};
+    }
+
+    if (this.bossHealthFilter.active || forceActivate) {
+      if (!this.bossHealthFilter.activate) {
+        this.bossHealthFilter.activate = true;
+        this.dump();
+      }
+      this.render(true);
+    }
+  }
+
+  update() {
+    this.bossHealthFilter = canvas.scene.getFlag(
+      "trace-amounts-of-dice",
+      "bossHealthFilter"
+    );
+    if (!this.bossHealthFilter) {
+      this.bossHealthFilter = {};
+    }
+
     $(".boss-health-bar-inner").css("width", this._getPercentage());
+  }
+
+  dump() {
+    canvas.scene
+      .setFlag("trace-amounts-of-dice", "bossHealthFilter", null)
+      .then((_) => {
+        canvas.scene.setFlag(
+          "trace-amounts-of-dice",
+          "bossHealthFilter",
+          this.bossHealthFilter
+        );
+      });
+  }
+
+  setHealth(currentHealthTotal, baseHealthTotal) {
+    this.bossHealthFilter.currentHealthTotal = Math.max(0, currentHealthTotal);
+    this.bossHealthFilter.baseHealthTotal = Math.max(0, baseHealthTotal);
+    this.bossHealthFilter.active = true;
+    this.dump();
   }
 }
 

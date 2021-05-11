@@ -43,14 +43,6 @@ Hooks.once("init", () => {
   });
 
   registerLayer();
-
-  game.socket.on("module.trace-amounts-of-dice", ({ active }) => {
-    if (active) {
-      bossHealthBar.render(true);
-    } else {
-      bossHealthBar.close();
-    }
-  });
 });
 
 Hooks.on("renderCombatTracker", (...args) => {
@@ -61,4 +53,18 @@ Hooks.on("renderChatMessage", (...args) => {
 });
 Hooks.on("getSceneControlButtons", (controls) => {
   registerBossHealthBarControls(controls);
+});
+
+Hooks.on("canvasInit", (canvas) => {
+  if (!game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
+    return;
+  }
+  bossHealthBar.close();
+});
+
+Hooks.on("canvasReady", (_) => {
+  if (!game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
+    return;
+  }
+  bossHealthBar.activate();
 });
