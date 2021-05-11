@@ -54,13 +54,6 @@ Hooks.on("getSceneControlButtons", (controls) => {
   registerBossHealthBarControls(controls);
 });
 
-Hooks.on("canvasInit", (canvas) => {
-  if (!game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
-    return;
-  }
-  bossHealthBar.close();
-});
-
 Hooks.on("canvasReady", (_) => {
   if (!game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
     return;
@@ -73,6 +66,6 @@ Hooks.on("updateScene", (scene, data, options) => {
     return;
   }
   if (hasProperty(data, "flags.trace-amounts-of-dice")) {
-    filterManager.update();
+    bossHealthBar.update();
   }
 });
