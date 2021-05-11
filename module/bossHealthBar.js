@@ -51,7 +51,7 @@ class BossHealthBar extends Application {
     }
 
     if (this.bossHealthFilter.active || forceActivate) {
-      if (!this.bossHealthFilter.activate) {
+      if (!this.bossHealthFilter.activate && forceActivate) {
         this.bossHealthFilter.activate = true;
         this.dump();
       }

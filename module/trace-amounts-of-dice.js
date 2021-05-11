@@ -34,8 +34,7 @@ Hooks.once("init", () => {
   });
   game.settings.register("trace-amounts-of-dice", "addInitiativeInput", {
     name: "Enable initiative editing",
-    hint:
-      "Allows token owners to edit their initiative value in the combat tracker.",
+    hint: "Allows token owners to edit their initiative value in the combat tracker.",
     scope: "world",
     config: true,
     default: true,
@@ -67,4 +66,13 @@ Hooks.on("canvasReady", (_) => {
     return;
   }
   bossHealthBar.activate();
+});
+
+Hooks.on("updateScene", (scene, data, options) => {
+  if (!game.settings.get("trace-amounts-of-dice", "bossHealthBar")) {
+    return;
+  }
+  if (hasProperty(data, "flags.trace-amounts-of-dice")) {
+    filterManager.update();
+  }
 });
