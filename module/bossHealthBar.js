@@ -1,7 +1,7 @@
 class BossHealthBar extends Application {
   constructor(options) {
     super(options);
-    this.bossHealthFilter = {};
+    this.bossHealthState = {};
   }
 
   /** @override */
@@ -20,7 +20,7 @@ class BossHealthBar extends Application {
 
   /** @override */
   async close() {
-    this.bossHealthFilter.active = false;
+    this.bossHealthState.active = false;
     await this.dump();
     super.close();
   }
@@ -28,31 +28,31 @@ class BossHealthBar extends Application {
   _getPercentage() {
     if (
       !(
-        this.bossHealthFilter.baseHealthTotal &&
-        this.bossHealthFilter.currentHealthTotal
+        this.bossHealthState.baseHealthTotal &&
+        this.bossHealthState.currentHealthTotal
       )
     ) {
       return "0%";
     }
     return `${
       100 *
-      (this.bossHealthFilter.currentHealthTotal /
-        this.bossHealthFilter.baseHealthTotal)
+      (this.bossHealthState.currentHealthTotal /
+        this.bossHealthState.baseHealthTotal)
     }%`;
   }
 
   async activate(forceActivate) {
-    this.bossHealthFilter = canvas.scene.getFlag(
+    this.bossHealthState = canvas.scene.getFlag(
       "trace-amounts-of-dice",
-      "bossHealthFilter"
+      "bossHealthState"
     );
-    if (!this.bossHealthFilter) {
-      this.bossHealthFilter = {};
+    if (!this.bossHealthState) {
+      this.bossHealthState = {};
     }
 
-    if (this.bossHealthFilter.active || forceActivate) {
-      if (!this.bossHealthFilter.active && forceActivate) {
-        this.bossHealthFilter.active = true;
+    if (this.bossHealthState.active || forceActivate) {
+      if (!this.bossHealthState.active && forceActivate) {
+        this.bossHealthState.active = true;
         await this.dump();
       }
       this.render(true);
@@ -60,15 +60,15 @@ class BossHealthBar extends Application {
   }
 
   update() {
-    this.bossHealthFilter = canvas.scene.getFlag(
+    this.bossHealthState = canvas.scene.getFlag(
       "trace-amounts-of-dice",
-      "bossHealthFilter"
+      "bossHealthState"
     );
-    if (!this.bossHealthFilter) {
-      this.bossHealthFilter = {};
+    if (!this.bossHealthState) {
+      this.bossHealthState = {};
     }
 
-    if (this.bossHealthFilter.active) {
+    if (this.bossHealthState.active) {
       $(".boss-health-bar-inner").css("width", this._getPercentage());
     } else if (super.rendered) {
       super.close();
@@ -76,22 +76,19 @@ class BossHealthBar extends Application {
   }
 
   async dump() {
+    let newBossHealthState = duplicate(this.bossHealthState);
+
     await canvas.scene.setFlag(
       "trace-amounts-of-dice",
-      "bossHealthFilter",
-      null
-    );
-    await canvas.scene.setFlag(
-      "trace-amounts-of-dice",
-      "bossHealthFilter",
-      this.bossHealthFilter
+      "bossHealthState",
+      newBossHealthState
     );
   }
 
   setHealth(currentHealthTotal, baseHealthTotal) {
-    this.bossHealthFilter.currentHealthTotal = Math.max(0, currentHealthTotal);
-    this.bossHealthFilter.baseHealthTotal = Math.max(0, baseHealthTotal);
-    this.bossHealthFilter.active = true;
+    this.bossHealthState.currentHealthTotal = Math.max(0, currentHealthTotal);
+    this.bossHealthState.baseHealthTotal = Math.max(0, baseHealthTotal);
+    this.bossHealthState.active = true;
     this.dump();
   }
 }
