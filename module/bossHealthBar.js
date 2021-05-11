@@ -19,9 +19,9 @@ class BossHealthBar extends Application {
   }
 
   /** @override */
-  close() {
+  async close() {
     this.bossHealthFilter.active = false;
-    this.dump();
+    await this.dump();
     super.close();
   }
 
@@ -41,7 +41,7 @@ class BossHealthBar extends Application {
     }%`;
   }
 
-  activate(forceActivate) {
+  async activate(forceActivate) {
     this.bossHealthFilter = canvas.scene.getFlag(
       "trace-amounts-of-dice",
       "bossHealthFilter"
@@ -53,7 +53,7 @@ class BossHealthBar extends Application {
     if (this.bossHealthFilter.active || forceActivate) {
       if (!this.bossHealthFilter.active && forceActivate) {
         this.bossHealthFilter.active = true;
-        this.dump();
+        await this.dump();
       }
       this.render(true);
     }
@@ -75,16 +75,17 @@ class BossHealthBar extends Application {
     }
   }
 
-  dump() {
-    canvas.scene
-      .setFlag("trace-amounts-of-dice", "bossHealthFilter", null)
-      .then((_) => {
-        canvas.scene.setFlag(
-          "trace-amounts-of-dice",
-          "bossHealthFilter",
-          this.bossHealthFilter
-        );
-      });
+  async dump() {
+    await canvas.scene.setFlag(
+      "trace-amounts-of-dice",
+      "bossHealthFilter",
+      null
+    );
+    await canvas.scene.setFlag(
+      "trace-amounts-of-dice",
+      "bossHealthFilter",
+      this.bossHealthFilter
+    );
   }
 
   setHealth(currentHealthTotal, baseHealthTotal) {
