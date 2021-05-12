@@ -70,7 +70,7 @@ class BossHealthBar extends Application {
 
     if (this.bossHealthState.active) {
       $(".boss-health-bar-inner").css("width", this._getPercentage());
-    } else if (super.rendered) {
+    } else if (super.rendered && this.bossHealthState.activate === false) {
       super.close();
     }
   }
