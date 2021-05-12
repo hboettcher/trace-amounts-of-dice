@@ -81,6 +81,11 @@ class BossHealthBar extends Application {
     await canvas.scene.setFlag(
       "trace-amounts-of-dice",
       "bossHealthState",
+      null
+    );
+    await canvas.scene.setFlag(
+      "trace-amounts-of-dice",
+      "bossHealthState",
       newBossHealthState
     );
   }
